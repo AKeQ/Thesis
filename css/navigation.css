@@ -1,0 +1,66 @@
+.navigation{padding-left:20px;}
+
+ul, li {list-style: none;}
+/* 選單 li 之樣式 */
+ul.navigation li {
+	background-color:#9ECE9A;
+	width:220px;
+}
+ul.navigation > li {
+	background-color:#74A57F;
+	width:220px;
+}
+ul.navigation > li > a:hover{
+	color:#E5D4CE;
+}
+ul.navigation > li:first-of-type {border-radius: 10px 10px 0px 0px;}
+ul.navigation > li:last-of-type {border-radius: 0px 0px 10px 10px;}
+
+ul.navigation ul ul li {
+	background-color:#BBE1C3;
+	width:220px;
+}
+
+/* 選單 li 裡面連結之樣式 */
+ul.navigation a{
+	font-size:15px;
+	text-decoration: none;
+	display: block;
+	padding: 10px 0 10px 15px;;
+	color: #82735C;
+	font-weight:bolder;
+}
+ul.navigation > li:first-of-type a{border-radius: 10px 10px 0px 0px;}
+ul.navigation > li:last-of-type a{border-radius: 0px 0px 10px 10px;}
+
+/* 特定在第一層，以灰線分隔 */
+ul.navigation > li > a{
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+ul.navigation > li:last-of-type > a {border-bottom: 1px solid #fff;}
+
+ul.navigation ul{display: none;}
+
+/* 特定在第二層或以後下拉部分 li 之樣式 */
+ul.navigation ul li > a{
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+}
+
+/* 第二層或以後選單 li 之樣式 */
+ul.navigation ul a {
+	color: #82735C;
+	font-size:13px;
+	padding: 10px 0 10px 30px;
+}
+ul.navigation ul ul a {
+	color: #82735C;
+	font-size:13px;
+	padding: 10px 0 10px 60px;
+}
+
+ul.navigation ul a:hover {background-color: #E4C5AF;}
+

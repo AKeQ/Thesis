@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<div id="ch5-1-1">
+		<a class="gallery" href="images/lg/struct-sim.png"><img src="images/sm/struct-sim.png" height="221" width="381" style="display:block;margin:auto;" alt="惡意軟體檔案A、B目錄結構圖"/></a></br>
+		<p>在檔案目錄結構特徵相似度中，主要計算兩惡意軟體，共同出現的檔案名稱之間的階層距離，以及共同出現的檔案名稱的父節點到根目錄的距離。如上圖惡意軟體A、B共同出現的檔案名稱<i>autorun</i>與<i>raway.e</i>為例，其中<i>autorun</i>為<i>f<sub>a</sub></i>，<i>raway.e</i>為<i>f<sub>r</sub></i>。</p>
+		<p>在惡意軟體A檔案目錄結構中，檔案<i>f<sub>a</sub></i>需要先往上1次到達根目錄再向下2次到達<i>f<sub>r</sub></i>，因此 <i>path<sub>A</sub>(f<sub>a</sub> - f<sub>r</sub>) = {+--}</i> 。<i>f<sub>a</sub></i>與<i>f<sub>r</sub></i>所共同擁有的父節點（parent）為根目錄（root）<i>system</i>，因此<i>path<sub>A</sub>(P<sub>a-r</sub> - root) = Ø</i> 。</p>
+
+		<p>在惡意軟體B檔案目錄結構中，檔案<i>f<sub>a</sub></i>需要先往上1次到達根目錄再向下2次到達<i>f<sub>r</sub></i>。因此<i>path<sub>B</sub>(P<sub>a-r</sub> - root) = {+--}</i>，<i>f<sub>a</sub></i>與<i>f<sub>r</sub></i>所共同擁有的父節點（parent）為根目錄（root） <i>bash</i>，因此<i>path<sub>B</sub>(P<sub>a-r</sub> - root) = Ø</i>。上述方式是本研究修改Wei et al.（2009）所提出的結構相似度公式[WHL09]，藉以衡量各個惡意軟體目錄階層結構。</p>
+	</div>
+	<div id="ch5-1-2">
+		<p>惡意軟體由數個原始碼檔案組成，<i>Malware{Source<sub>1</sub>,Source<sub>2</sub>,…,Source<sub>n</sub>}</i>，每個原始碼檔案擁有各自特徵<i>Source{Feature<sub>1</sub>,Feature<sub>2</sub>,…,Feature<sub>n</sub>}</i>。本研究組合特徵相似度，引用 <a target="_blank" href="http://en.wikipedia.org/wiki/Dice">Dice</a> [D45]提出之相似度公式，Dice相似度公式使用集合的交集、聯集觀點，若兩字串組合交集數量越高，則相似度越高，所得到的相似度介於0~1之間。其公式如下所示：</p>
+		<i style="font-size:18px;">Sim = </i>
+		<span style="position:relative;top:-10px;left:3px;font-size:18px;">2×|X∩Y|</span>
+		<span style="position:relative;left:-65px;font-size:18px;">————</span>
+		<span style="position:relative;top:9px;left:-130px;font-size:18px;">|X|+|Y|</span>
+		<p></br>若有兩字串，字串組合X ={ni,ig,gh,ht}，字串組合Y={na,ac,ch,ht}，由於字串X、Y只有一個相同的字組ht，Sim = 2×|1|/|4|+|4| =0.25。本研究引用相似度公式衡量惡意軟體原始碼之間共同引用的函式庫、呼叫系統指令、呼叫函式，三個組合特徵相似度。</p>
+		<p>由於惡意軟體擁有的原始碼檔案並不一致，因此本研究使用Dice公式，並且配合循序加總最大值的方式計算特徵組合相似度。</p>
+	</div>
+	<div id="ch5-1-3">
+		<p>惡意軟體由數個原始碼檔案組成，<i>Malware{Source<sub>1</sub>,Source<sub>2</sub>,…,Source<sub>n</sub>}</i>，每個原始碼檔案擁有各自特徵<i>Source{Feature<sub>1</sub>,Feature<sub>2</sub>,…,Feature<sub>n</sub>}</i>。本研究所指的序列相似度修改自<a target="_blank" href="http://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein</a> [L96]提出之字串相似度公式，Levenshtein [L96]所提出之編輯距離公式，以其中一字串轉換成另一字串過程中所需最少的編輯動作次數，作為兩字串之間的距離，其中編輯動作包含：字元插入、字元刪除、字元替換。當兩字串越相近時，則所得的相似度則越接近0，否則越大。然而，若以字元作為編輯單位次數，則將無法代表呼叫函式、系統指令之原意。因此，本研究修改Levenshtein [L96]所提出之公式，以字詞作為編輯單位次數。其修改後Levenshtein公式如下：</p>
+		<a class="gallery" href="images/lg/seq-sim.png"><img src="images/sm/seq-sim.png" height="134" width="403" style="display:block;margin:auto;" alt="惡意軟體檔案A、B目錄結構圖"/></a></br>
+		<p>本研究使用修改後之Levenshtein公式衡量惡意軟體原始碼之間共同呼叫系統指令、呼叫函式，兩個序列特徵相似度。由於惡意軟體擁有的原始碼檔案並不一致，因此本研究使用修改後之Levenshtein公式，並且配合循序加總最大值的方式計算特徵組合相似度。</p>
+	</div>
+</body>
+</html>

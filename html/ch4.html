@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<div id="ch4-1">
+		<p>本研究萃取特徵均在Linux作業系統下，使用Perl Regular Expression，萃取Shell Script 中含有sbin、bin的系統指令，以及萃取Perl中含有的<a target="_blank" href="http://perldoc.perl.org/index-functions.html">Prel functions</a>，並且利用cflow指令萃取C語言function call。</p>
+		<p>特徵選取方面將取出能夠代表惡意軟體之特徵。<b>檔案目錄結構</b>、<b>引用的套件</b>或<b>函式庫</b>、<b>呼叫的系統指令</b>、<b>呼叫的函式</b>如下將詳細說明：</p>
+		<P><b>檔案目錄結構</b>：檔案目錄結構在本研究所指的是，在一個根目錄中，所包含的子目錄和檔案，依照存放位置所組成的階層架構。如<a class="gallery" href="images/lg/Malware-Struct.png"><i>Malware_A</i></a>。</P>
+		<p>本研究擷取惡意軟體的<a class="gallery" href="images/lg/Malware-Folder.png">目錄階層</a>與<a class="gallery" href="images/lg/Malware-File.png">檔案階層</a>表示<i>Malware_A</i> 檔案目錄結構。經由計算兩惡意軟體共同出現的檔案名稱之間的階層距離，以及共同出現的檔案名稱的父節點到根目錄的距離，作為檔案目錄結構的特徵值，藉此計算惡意軟體間的相似程度。我們修改Wei et al.（2009）所提出的結構相似度公式[WHL09]，其計算方式將於<b>相似度計分模組</b>說明。</p>
+	</div>
+	<div id="ch4-2">
+		<p><b>引用函式庫</b>：函式庫是一個標準函式的集合，用以執行常用的操作像是檔案輸入/輸出、字串控制和繪圖等。這意味著，同家族的變種惡意軟體容易引用相似的函式庫功能。經由上述，本研究選取惡意軟體<a class="gallery" href="images/lg/Malware-Lib.png">原始碼檔案</a>內，<a class="gallery" href="images/lg/Malware-Lib-Table.png">函式庫組合</a>作為惡意軟體之特徵</p>
+		<p><b>呼叫的系統指令</b>：藉由系統呼叫的指令順序產生出惡意軟體行為特徵，藉此判斷系統呼叫是否構成惡意行為，進而觀察出惡意軟體特性及行為。我們從惡意軟體<a class="gallery" href="images/lg/Malware-System.png">原始碼檔案</a>A，分別擷取其呼叫的<a class="gallery" href="images/lg/Malware-System-Seq.png">系統指令序列</a>，並且去除系統指令序列中，重複呼叫的系統指令，作為<a class="gallery" href="images/lg/Malware-System-Pair.png">系指令式組合</a>。藉由擷取系統指令序列、組合，將可以計算惡意軟體系統指令序列、組合的相似度。</p>
+	</div>
+	<div id="ch4-3">
+		<p><b>呼叫的函式</b>：Islam et al.（2010）指出惡意軟體作者使用惡意軟體的系統呼叫、API呼叫和函式呼叫建立惡意行為 [ITBV10]。我們從惡意軟體<a href="images/lg/Malware-Function.png" class="gallery">原始碼檔案</a>B，分別擷取其呼叫<a href="images/lg/Malware-Function-Seq.png" class="gallery">函式序列</a>，並且去除函式序列中，重複呼叫的函式，作為<a href="images/lg/Malware-Function-Pair.png" class="gallery">函式組合</a>。藉由擷取函式序列、組合，將可以計算惡意軟體函式序列、組合的相似度。</p>
+	</div>
+</body>
+</html>

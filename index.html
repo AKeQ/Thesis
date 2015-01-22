@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>A Source Code-Base Malware Detection Technique</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link href="css/style_sys.css" rel="stylesheet">
+	<link href="css/navigation.css" rel="stylesheet">
+	<link href="css/jpaginate.css" rel="stylesheet">
+	<link href="css/prettyPhoto.css" rel="stylesheet">
+	
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<h2 style="font-family:Microsoft YaHei;"><b>以原始碼為特徵基礎之惡意軟體類型偵測</b></h2>
+			<h2><i>A Source Code-Base Malware Detection Technique</i></h2>
+		</div>
+		<div id="content">
+			<div id="nav">
+					<ul class="navigation">
+						<li><a href="#ch1">系統概觀</a></li>
+						<li><a href="#ch2">未知類別的惡意軟體序列</a><!----></li>
+						<li><a href="#ch3">初步檔案過濾</a></li>
+						<li><a href="#ch4">特徵選取</a></li>
+						<li><a href="#ch5">惡意軟體分類預測
+							<span class="glyphicon glyphicon-circle-arrow-down" style="padding-left:20px; color:#515B3A;"></span></a>
+							<ul>
+								<li><a href="#ch5-sub1">相似度計分模組
+								<span class="glyphicon glyphicon-circle-arrow-down" style="padding-left:20px; color:#515B3A;"></span></a>
+									<ul>
+										<li><a href="#ch5-sub1-1">檔案目錄結構相似度</a></li>
+										<li><a href="#ch5-sub1-2">組合特徵相似度</a></li>
+										<li><a href="#ch5-sub1-3">序列特徵相似度</a></li>
+									</ul>
+								</li>
+								<li><a href="#ch5-sub2">漸進式分群</a></li>
+							</ul>
+						</li>
+						<li><a href="#ch6">實驗成果</a></li>
+					</ul>
+			</div>
+			<div id="main">
+				<div id="view">
+					<div id="ch1" >
+						<div id="ch1-1" class="well">
+							<p>惡意軟體擁有不斷進行演化的特性，屬於動態且持續性的事件，惡意軟體所造成的企業損失甚大，快速的瞭解其惡意行為，將有助於研究人員迅速掌握惡意軟體的攻擊，使所造成的傷害降至最低。因此本研究採用即時分群的方式，當發現可疑軟體時，系統立即透過惡意軟體資料庫進行偵測。</p>
+							<a class="gallery" href="images/lg/System_Flow.png"><img src="images/sm/System_Flow.png" height="328" width="329" style="display:block;margin:auto;" alt="漸進式惡意軟體類型偵測技術流程圖"/></a></br>
+							<p>系統流程主要可分為三個階段，<b>檔案類型初步過濾</b>階段、<b>特徵選取</b>階段和<b>惡意軟體分類預測</b>階段。其中<b><u>惡意軟體分類預測</u></b>包含兩子系統，分別為<b>相似度計分模組</b>與<b>漸進式分群</b>，目標惡意軟體產分類結果，存放於<b>分類後已知的惡意軟體</b>資料庫，待下一筆資料進入後再進行分析。</p>
+						</div>
+					</div>
+					<div id="ch2">
+						<div id="ch2-1" class="well">
+							<p>本研究於校內實驗室，將<a target="_blank" href="https://code.google.com/p/kippo/">kippo</a>誘捕系統，安裝在Linux作業系統，建置有缺陷的系統，成為駭客攻擊目標的誘餌，吸引駭客進入攻擊誘捕系統，藉此收集惡意軟體樣本。收集期間自2012年8月至2013年1月，總共收集314份可以檔案。</p>
+							<p>由於惡意軟體屬於動態且持續的事件，因此，未知惡意軟體序列 <i>M = {M<sub>1</sub>,M<sub>2</sub>, ..., M<sub>n</sub>}</i> 代表惡意軟體逐筆進入本研究系統，並且進行即時的分析。</p>
+						</div>
+					</div>
+					<div id="ch3" >
+						<div id="ch3-1" class="well">
+							<p>本研究所收集到的惡意軟體原始碼檔案，主要以Perl、C、Shell程式語言為主，以及其他二進位執行檔。</p>
+							<p>經由先前所述，我們可以得知惡意軟體之原始碼檔案透過不同的程式語言撰寫而成，並且經由先前文獻得知，惡意軟體模仿多過於創新 [PZR10]。</p>
+							<p>因此，若由初始版本改寫而來的新版惡意軟體，為同一程式語言撰寫而成，屬於相同家族惡意軟體，故本研究擷取目標惡意軟體原始碼使用的語言類型，並且從惡意軟體資料庫選出使用相同語言類型的惡意軟體，初步分類可能的惡意軟體家族。</p>
+							<p>本研究依照檔案類型組合整理收集資料，其中Y代表為擁有檔案類型，N則代表沒有。資料集共可分為<a class="gallery" href="images/lg/Malware-Table.png">八個組合</a>，檔案類型組合數量最多為Shell Script與二進位檔案，數量最少為C、Perl與二進位檔案組合。</p>
+							<p>本研究邀請專家針對本資料集合進行人工偵測類型，經由專家偵測之惡意軟體資料，共可分為<a class="gallery" href="images/lg/Malware-Group.png">34群惡意軟體家族</a>，每個家族最少有1筆惡意軟體，最多有48筆惡意軟體，其中少於3筆惡意軟體之家族共有17群，僅有1筆惡意軟體之家族共有7群，詳細整理如表4-2所示。</p>
+						</div>
+					</div>
+					<div id="ch4">
+						<div id="ch4-p1" class="well _current"></div>
+						<div id="ch4-p2" class="well" style="display:none;"></div>
+						<div id="ch4-p3" class="well" style="display:none;"></div>
+						<div id="ch4-paginate" class="pagination-sm" ></div>
+					</div>
+					<div id="ch5">
+						<div id="ch5-sub1">
+							<div id="ch5-sub1-1" class="well">
+								<h2>5-1-1</h2>
+							</div>
+							<div id="ch5-sub1-2" class="well">
+								<h2>5-1-2</h2>
+							</div>
+							<div id="ch5-sub1-3" class="well">
+								<h2>5-1-3</h2>
+							</div>
+						</div>
+						<div id="ch5-sub2" class="well">
+							<p>本研究考量惡意軟體動態且持續性的攻擊，因此我們提出以漸進方式偵測惡意軟體之方法1-Nearest-Neighbor Clustering（1-NN）分群方式，1-NN分群方式：當有一目標惡意軟體則逐一計算各惡意軟體間之相似度，找出最相似之惡意軟體，並且分類至該群。
+							<a href="images/sm/NN-1.png" rel="prettyPhoto[pp_gal]" title="計算惡意軟體F與所有群組內之惡意軟體相似度">流程圖</a>
+							<a href="images/sm/NN-2.png" rel="prettyPhoto[pp_gal]" title="顯示惡意軟體F與惡意軟體C、E分為同一群"></a>
+							<a href="images/sm/NN-3.png" rel="prettyPhoto[pp_gal]" title="惡意軟體G先與群組內所有惡意軟體計算相似度"></a>
+							<a href="images/sm/NN-4.png" rel="prettyPhoto[pp_gal]" title="顯示惡意軟體G分群結果"></a></p>
+							<p>本研究亦定義惡意軟體相似度門檻值，當目標惡意軟體與已知惡意軟體相似度未大於所定義的相似度門檻值，則會將目標惡意軟體歸類為新類別，因此在實驗階段，本研究將會定義不同的相似度門檻值，觀察系統分群效能。</p>
+						</div>
+					</div>
+					<div id="ch6" class="well">
+						<p>經由研究實驗顯示，採用原始碼特徵組合，較佳於n-gram特徵選取方式的分群效能，若能搭配二進位檔案MD5格式特徵，將擁有最佳的分群效能。</p>
+						<p>將n-gram作為惡意軟體特徵，轉為使用惡意軟體原始碼特徵，可以減少傳統上，以n-gram特徵為惡意軟體類型偵測，所面臨到變種惡意軟體偵測的問題，這將能夠協助未來使用原始碼為基礎惡意軟體偵測的相關研究上做為參考依據。</p>
+						<p>本研究所提出的1-NN、Extended-1-NN漸進式分群方法，能夠反映惡意軟體動態且持續的攻擊特性，並且協助研究人員即時獲取惡意軟體的資訊，做出最有效的反應，對未來偵測惡意軟體類型做為其參考依據。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<b>Copyright &copy; 2015 Eddie Qiu.</b>
+		</div>
+	</div>
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<!-- bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<!--jquery pagination plugin-->
+	<script src="js/jquery.paginate.js"></script>
+	<script src="js/jquery.prettyPhoto.js"></script>
+	<script src="js/pag-plug.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+@import url(http://fonts.googleapis.com/css?family=Combo);
+
+*{
+	margin:0 ;
+	padding:0;
+}
+
+body{
+	background-color: #F4F3DE;
+	
+}
+
+#header , #header h2 {
+	background-color: #7BA3A8;
+	color:white;
+	text-align:center;
+	font-family: 'Combo';
+	font-weight: 700;
+	padding:5px;
+	border-radius: 10px 10px 0px 0px;
+	margin-top: 5px;
+}
+h2 {
+	margin:0;
+}
+#container{
+	background-color: #BEAD92;
+	width:800px;
+	
+	margin:auto;
+	border-radius: 10px;
+}
+
+#content{
+	padding:10px;
+	
+}
+
+#nav {
+	width:260px;
+	height: 100%;
+	float:left;
+	margin-bottom: 10px;
+	margin-right:10px;
+	border-radius: 5px;
+}
+
+#main {
+	width:500px;
+	float:right;
+	min-height: 600px;
+	background-color: #BEAD92;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	border:1px solid #5B4947;
+}
+
+#footer{
+	clear:both;
+	padding:10px;
+	background-color: #5B4947;
+	text-align: right;
+	color:white;
+	border-radius: 0px 0px 10px 10px ;
+}
+
+#view{
+	background-color: white;
+	width:470px;
+	min-height: 580px;
+	margin:auto;
+	margin-top:10px;
+	margin-bottom: 10px;
+	padding:10px;
+	border-radius: 10px;
+	height: auto;
+}
+
+.well{
+	margin-bottom:0px;
+}
+#ch4-paginate{
+	margin-top:10px;
+}
+p,p > a{
+	font-family: Microsoft YaHei;
+	font-size: 18px;
+	line-height: 24px;
+	letter-spacing:1px;
+	text-align:justify;
+	text-justify:inter-ideograph;
+}
