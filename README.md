@@ -1,3 +1,3 @@
 # thesis
 about thesis
-http://akeq.github.io/thesis/
+http://akeq.github.io/Thesis/
