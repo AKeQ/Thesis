@@ -8,16 +8,16 @@
 	<link href="css/navigation.css" rel="stylesheet">
 	<link href="css/jpaginate.css" rel="stylesheet">
 	<link href="css/prettyPhoto.css" rel="stylesheet">
-	
+
 </head>
 <body>
-	<div id="container">
-		<div id="header">
+	<div class="container">
+		<header>
 			<h2 style="font-family:Microsoft YaHei;"><b>以原始碼為特徵基礎之惡意軟體類型偵測</b></h2>
 			<h2><i>A Source Code-Base Malware Detection Technique</i></h2>
-		</div>
-		<div id="content">
-			<div id="nav">
+		</header>
+		<div class="row">
+			<div id="nav" class="col-md-4 col-sm-4 col-xs-12">
 					<ul class="navigation">
 						<li><a href="#ch1">系統概觀</a></li>
 						<li><a href="#ch2">未知類別的惡意軟體序列</a><!----></li>
@@ -40,8 +40,8 @@
 						<li><a href="#ch6">實驗成果</a></li>
 					</ul>
 			</div>
-			<div id="main">
-				<div id="view">
+			<div id="main" class="col-md-8 col-sm-8 col-xs-12">
+				<div id="view" >
 					<div id="ch1" >
 						<div id="ch1-1" class="well">
 							<p>惡意軟體擁有不斷進行演化的特性，屬於動態且持續性的事件，惡意軟體所造成的企業損失甚大，快速的瞭解其惡意行為，將有助於研究人員迅速掌握惡意軟體的攻擊，使所造成的傷害降至最低。因此本研究採用即時分群的方式，當發現可疑軟體時，系統立即透過惡意軟體資料庫進行偵測。</p>
@@ -99,9 +99,13 @@
 				</div>
 			</div>
 		</div>
-		<div id="footer">
-			<b>Copyright &copy; 2015 Eddie Qiu.</b>
-		</div>
+		<footer>
+			<div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+					<b>Copyright &copy; 2015 Eddie Qiu.</b>
+				</div>
+			</div>
+		</footer>
 	</div>
 	<!-- jQuery -->
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>

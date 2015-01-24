@@ -1,14 +1,14 @@
-.navigation{padding-left:20px;}
+.navigation{/*padding-left:20px;*/}
 
 ul, li {list-style: none;}
 /* 選單 li 之樣式 */
 ul.navigation li {
 	background-color:#9ECE9A;
-	width:220px;
+	/*width:220px;*/
 }
 ul.navigation > li {
 	background-color:#74A57F;
-	width:220px;
+	/*width:220px;*/
 }
 ul.navigation > li > a:hover{
 	color:#E5D4CE;
@@ -18,7 +18,7 @@ ul.navigation > li:last-of-type {border-radius: 0px 0px 10px 10px;}
 
 ul.navigation ul ul li {
 	background-color:#BBE1C3;
-	width:220px;
+	/*width:220px;*/
 }
 
 /* 選單 li 裡面連結之樣式 */
